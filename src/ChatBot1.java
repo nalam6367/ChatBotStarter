@@ -2,7 +2,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- * A program to carry on conversations with a human user.
+ * A program to carry on conversations with a human user. Nusrat
  * This version:
  * @author Brooklyn Tech CS Department
  * @version September 2018
@@ -19,6 +19,7 @@ public class ChatBot1
 	public void chatLoop(String statement)
 	{
 		Scanner in = new Scanner (System.in);
+
 		System.out.println (getGreeting());
 
 
@@ -52,12 +53,15 @@ public class ChatBot1
 	 */
 	public String getResponse(String statement)
 	{
-		String response = "";
+		String response = " ";
 		
 		if (statement.length() == 0)
 		{
 			response = "Say something, please.";
+
+
 		}
+
 
 		else if (findKeyword(statement, "no") >= 0)
 		{
@@ -276,6 +280,7 @@ public class ChatBot1
 			"It's all boolean to me.",
 			"So, would you like to go for a walk?",
 			"Could you say that again?"
+			"Would you like to "
 	};
 	private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!"};
 	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
