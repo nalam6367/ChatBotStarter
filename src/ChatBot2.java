@@ -1,6 +1,6 @@
 import java.util.Random;
 import java.util.Scanner;
-
+//Christina Chau
 /**
  * A program to carry on conversations with a human user.
  * This version:
@@ -54,16 +54,16 @@ public class ChatBot2
 	public String getResponse(String statement)
 	{
 		String response = "";
-		
+		Random r = new Random ();
 		if (statement.length() == 0)
 		{
-			response = "Say something, please.";
+			response =  randomReplyResponse [r.nextInt(randomReplyResponse.length)];
 		}
 
 		else if (findKeyword(statement, "no") >= 0)
 		{
-			response = "Why so negative?";
-                	emotion--;
+			response = randomSadResponse [r.nextInt(randomSadResponse.length)];
+			emotion--;
 		}
 		
 		else if (findKeyword(statement, "levin") >= 0)
@@ -88,7 +88,8 @@ public class ChatBot2
 		
 		return response;
 	}
-	
+	private String [] randomReplyResponse = {"Say something, please.", "Why aren't you answering?", "Stop ignoring me", "What's wrong?", "Do you want to listen to music?"};
+	private String [] randomSadResponse = {"Why so negative?", "You're making me sad", "Did your family hurt you?", "What made you this way?", "no"};
 	/**
 	 * Take a statement with "I want to <something>." and transform it into 
 	 * "Why do you want to <something>?"
@@ -262,13 +263,14 @@ public class ChatBot2
 	
 	private String [] randomNeutralResponses = {"Interesting, tell me more",
 			"Hmmm.",
+			"Oof",
+			"Why?",
 			"Do you really think so?",
 			"You don't say.",
 			"It's all boolean to me.",
 			"So, would you like to go for a walk?",
-			"Could you say that again?"
-	};
-	private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!"};
+			"Could you say that again?"};
+	private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!", "Don't talk to me", "Shut up", "No"};
 	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes.", "I'm happy today, are you?"};
 
 	

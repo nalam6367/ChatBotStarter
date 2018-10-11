@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
-/**
+/**Jackie Wu
  * A program to carry on conversations with a human user.
  * This version:
  * @author Brooklyn Tech CS Department
@@ -42,7 +42,7 @@ public class ChatBot3
 	 */	
 	public String getGreeting()
 	{
-		return "Hi, what is up?";
+		return "Dam son you must be hungry af";
 	}
 	
 	/**
@@ -58,27 +58,27 @@ public class ChatBot3
 		
 		if (statement.length() == 0)
 		{
-			response = "Say something, please.";
+			response = "Did you fall back asleep?";
 		}
 
-		else if (findKeyword(statement, "no") >= 0)
+		else if (findKeyword(statement, "Help") >= 0)
 		{
-			response = "Why so negative?";
+			response = "I am doing my best!";
                 	emotion--;
 		}
 		
-		else if (findKeyword(statement, "levin") >= 0)
+		else if (findKeyword(statement, "Thanks") >= 0)
 		{
-			response = "More like LevinTheDream amiright?";
+			response = "Glad I can help you!";
 			emotion++;
 		}
 
 		// Response transforming I want to statement
-		else if (findKeyword(statement, "I want to", 0) >= 0)
+		else if (findKeyword(statement, "Do I have",0) >= 0)
 		{
 			response = transformIWantToStatement(statement);
 		}
-		else if (findKeyword(statement, "I want",0) >= 0)
+		else if (findKeyword(statement, "Can I make",0) >= 0)
 		{
 			response = transformIWantStatement(statement);
 		}	
@@ -102,14 +102,14 @@ public class ChatBot3
 		statement = statement.trim();
 		String lastChar = statement.substring(statement
 				.length() - 1);
-		if (lastChar.equals("."))
+		if (lastChar.equals("?"))
 		{
 			statement = statement.substring(0, statement
 					.length() - 1);
 		}
-		int psn = findKeyword (statement, "I want to", 0);
+		int psn = findKeyword (statement, "Do I have", 0);
 		String restOfStatement = statement.substring(psn + 9).trim();
-		return "Why do you want to " + restOfStatement + "?";
+		return "I don't think you have " + restOfStatement + ".";
 	}
 
 	
@@ -125,14 +125,14 @@ public class ChatBot3
 		statement = statement.trim();
 		String lastChar = statement.substring(statement
 				.length() - 1);
-		if (lastChar.equals("."))
+		if (lastChar.equals("?"))
 		{
 			statement = statement.substring(0, statement
 					.length() - 1);
 		}
-		int psn = findKeyword (statement, "I want", 0);
+		int psn = findKeyword (statement, "Can I make", 0);
 		String restOfStatement = statement.substring(psn + 6).trim();
-		return "Would you really be happy if you had " + restOfStatement + "?";
+		return "You don't seem to have the right ingredients unfortunately to " + restOfStatement + ".";
 	}
 	
 	
@@ -261,15 +261,15 @@ public class ChatBot3
 		return randomHappyResponses [r.nextInt(randomHappyResponses.length)];
 	}
 	
-	private String [] randomNeutralResponses = {"Interesting, tell me more",
-			"Hmmm.",
-			"Do you really think so?",
-			"You don't say.",
-			"It's all boolean to me.",
-			"So, would you like to go for a walk?",
-			"Could you say that again?"
+	private String [] randomNeutralResponses = {"Do you need any help?",
+			"What do you want to eat?",
+			"Sounds interesting.",
+			"Sounds delicious!",
+			"Breakfast is the most important meal of the day!.",
+			"I can hear your tummy growling!",
+			"Are you ready to cook?"
 	};
-	private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!"};
-	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
+	private String [] randomAngryResponses = {"You're annoying me.", "Can you listen for once.", "Follow my directions."};
+	private String [] randomHappyResponses = {"How does it taste?", "Today is gonna be a good day!", "Eat up and get ready!"};
 	
 }
