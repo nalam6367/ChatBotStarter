@@ -30,7 +30,7 @@ import java.util.Scanner;
 
 
 
-			chatbot1.chatLoop(statement);
+			chatbot2.chatLoop(statement);
 
 
 			statement = in.nextLine();
