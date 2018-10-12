@@ -71,17 +71,17 @@ public class ChatBot1
 		
 		else if (findKeyword(statement, "levin") >= 0)
 		{
-			response = "More like LevinTheDream, amiright?";
+			response = "More like LevinTheDream, amiright? Hahaha";
 			emotion++;
 		}
 		else if (findKeyword(statement, "folwell") >= 0)
 		{
-			response = "Watch your backpacks, Mr. Folwell doesn't fall well.";
+			response = "Watch your backpacks, Mr. Folwell doesn't fall well. Hahaha";
 			emotion++;
 		}
 		else if (findKeyword(statement, "goldman") >= 0)
 		{
-			response = "Go for the gold, man.";
+			response = "Go for the gold, man. Hahaha";
 			emotion++;
 		}
 
@@ -93,7 +93,7 @@ public class ChatBot1
 		else if (findKeyword(statement, "I want",0) >= 0)
 		{
 			response = transformIWantStatement(statement);
-		}	
+		}
 		else
 		{
 			response = getRandomResponse();
@@ -279,9 +279,8 @@ public class ChatBot1
 			"You don't say.",
 			"It's all boolean to me.",
 			"So, would you like to go for a walk?",
-			"Could you say that again?"
-			"Would you like to "
-	};
+			"Could you say that again?",
+			"Would you like to?"};
 	private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!"};
 	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
 	

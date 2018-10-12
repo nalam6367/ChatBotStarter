@@ -80,7 +80,11 @@ public class ChatBot2
 		else if (findKeyword(statement, "I want",0) >= 0)
 		{
 			response = transformIWantStatement(statement);
-		}	
+		}
+		else if (findKeyword(statement, "music", 0) >= 0)
+		{
+			response = "What kind of music do you want to listen to?" + randomGenreResponse [r.nextInt(randomGenreResponse.length)] + "?";
+		}
 		else
 		{
 			response = getRandomResponse();
@@ -89,7 +93,8 @@ public class ChatBot2
 		return response;
 	}
 	private String [] randomReplyResponse = {"Say something, please.", "Why aren't you answering?", "Stop ignoring me", "What's wrong?", "Do you want to listen to music?"};
-	private String [] randomSadResponse = {"Why so negative?", "You're making me sad", "Did your family hurt you?", "What made you this way?", "no"};
+	private String [] randomSadResponse = {"Why so negative?", "You're making me sad", "Whst's wrong?", "What made you this way?"};
+	private String [] randomGenreResponse = {"Pop", "Rock", "EDM", "R&B", "Tropical", "Country", "Progressive House","Jazz", "Soundtracks", "KPop", "Classical", ""};
 	/**
 	 * Take a statement with "I want to <something>." and transform it into 
 	 * "Why do you want to <something>?"
@@ -270,7 +275,7 @@ public class ChatBot2
 			"It's all boolean to me.",
 			"So, would you like to go for a walk?",
 			"Could you say that again?"};
-	private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!", "Don't talk to me", "Shut up", "No"};
+	private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!", "Don't talk to me", "Shut up", "No", "I'm mad"};
 	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes.", "I'm happy today, are you?"};
 
 	
