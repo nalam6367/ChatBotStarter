@@ -81,7 +81,11 @@ public class ChatBot3
 		else if (findKeyword(statement, "Can I make",0) >= 0)
 		{
 			response = transformIWantStatement(statement);
-		}	
+		}
+		else if (findKeyword(statement, "How do I make",0) >=0)
+		{
+			response = directions(statement);
+		}
 		else
 		{
 			response = getRandomResponse();
@@ -240,6 +244,28 @@ public class ChatBot3
 	{
 		return findKeyword (statement, goal, 0);
 	}
+	private String directions(String statement)
+	{
+		//  Remove the final period, if there is one
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals("?"))
+		{
+			statement = statement.substring(0, statement
+					.length() - 1);
+		}
+		int psn = findKeyword (statement, "How do I make", 0);
+		String restOfStatement = statement.substring(psn + 13).trim();
+		for(int i = 0; i < restOfStatement.length();i++)
+		{
+			if(restOfStatement.substring(i,i+1).equals(""))
+			{
+				\
+			}
+		}
+		return "https://www.mycookbook-online.net/search_result/?q=" + restOfStatement + "&lang=en";
+	}
 	
 
 
@@ -271,5 +297,6 @@ public class ChatBot3
 	};
 	private String [] randomAngryResponses = {"You're annoying me.", "Can you listen for once.", "Follow my directions."};
 	private String [] randomHappyResponses = {"How does it taste?", "Today is gonna be a good day!", "Eat up and get ready!"};
-	
+
+
 }
