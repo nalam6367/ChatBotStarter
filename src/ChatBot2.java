@@ -41,7 +41,7 @@ public class ChatBot2
 	 */	
 	public String getGreeting()
 	{
-		return "Hi, what is up?";
+		return "Let's play some music! What kind of music do you want to listen to?";
 	}
 	
 	/**
@@ -54,6 +54,7 @@ public class ChatBot2
 	public String getResponse(String statement)
 	{
 		String response = "";
+		String choice = "";
 		Random r = new Random ();
 		if (statement.length() == 0)
 		{
@@ -65,13 +66,10 @@ public class ChatBot2
 			response = randomSadResponse [r.nextInt(randomSadResponse.length)];
 			emotion--;
 		}
-		
-		else if (findKeyword(statement, "levin") >= 0)
+		else if (findKeyword(statement, "Pop") >= 0)
 		{
-			response = "More like LevinTheDream amiright?";
-			emotion++;
+			response = randomPopResponse [];
 		}
-
 		// Response transforming I want to statement
 		else if (findKeyword(statement, "I want to", 0) >= 0)
 		{
@@ -81,9 +79,13 @@ public class ChatBot2
 		{
 			response = transformIWantStatement(statement);
 		}
-		else if (findKeyword(statement, "music", 0) >= 0)
+		else if (findKeyword(statement, "anything", 0) >= 0)
 		{
-			response = "What kind of music do you want to listen to?" + randomGenreResponse [r.nextInt(randomGenreResponse.length)] + "?";
+			response = "How about" + randomGenreResponse [r.nextInt(randomGenreResponse.length)] + "?";
+		}
+		else if (findKeyword(statement, "choose", 0) >= 0)
+		{
+			response = "How about" + randomGenreResponse [r.nextInt(randomGenreResponse.length)] + "?";
 		}
 		else
 		{
@@ -94,7 +96,8 @@ public class ChatBot2
 	}
 	private String [] randomReplyResponse = {"Say something, please.", "Why aren't you answering?", "Stop ignoring me", "What's wrong?", "Do you want to listen to music?"};
 	private String [] randomSadResponse = {"Why so negative?", "You're making me sad", "Whst's wrong?", "What made you this way?"};
-	private String [] randomGenreResponse = {"Pop", "Rock", "EDM", "R&B", "Tropical", "Country", "Progressive House","Jazz", "Soundtracks", "KPop", "Classical", ""};
+	private String [] randomGenreResponse = {"Pop", "Rock", "EDM", "R&B", "Tropical", "Country", "Progressive House","Jazz", "Soundtracks", "KPop", "Classical"};
+	private String [] randomPopResponse = {};
 	/**
 	 * Take a statement with "I want to <something>." and transform it into 
 	 * "Why do you want to <something>?"
