@@ -39,15 +39,15 @@ public class ChatBot3
 	/**
 	 * Get a default greeting 	
 	 * @return a greeting
-	 */	
+	 */
 	public String getGreeting()
 	{
 		return "Dam son you must be hungry af";
 	}
-	
+
 	/**
 	 * Gives a response to a user statement
-	 * 
+	 *
 	 * @param statement
 	 *            the user statement
 	 * @return a response based on the rules given
@@ -55,7 +55,7 @@ public class ChatBot3
 	public String getResponse(String statement)
 	{
 		String response = "";
-		
+
 		if (statement.length() == 0)
 		{
 			response = "Did you fall back asleep?";
@@ -64,9 +64,9 @@ public class ChatBot3
 		else if (findKeyword(statement, "Help") >= 0)
 		{
 			response = "I am doing my best!";
-                	emotion--;
+			emotion--;
 		}
-		
+
 		else if (findKeyword(statement, "Thanks") >= 0)
 		{
 			response = "Glad I can help you!";
@@ -90,12 +90,12 @@ public class ChatBot3
 		{
 			response = getRandomResponse();
 		}
-		
+
 		return response;
 	}
-	
+
 	/**
-	 * Take a statement with "I want to <something>." and transform it into 
+	 * Take a statement with "I want to <something>." and transform it into
 	 * "Why do you want to <something>?"
 	 * @param statement the user statement, assumed to contain "I want to"
 	 * @return the transformed statement
@@ -116,9 +116,9 @@ public class ChatBot3
 		return "I don't think you have " + restOfStatement + ".";
 	}
 
-	
+
 	/**
-	 * Take a statement with "I want <something>." and transform it into 
+	 * Take a statement with "I want <something>." and transform it into
 	 * "Would you really be happy if you had <something>?"
 	 * @param statement the user statement, assumed to contain "I want"
 	 * @return the transformed statement
@@ -138,10 +138,10 @@ public class ChatBot3
 		String restOfStatement = statement.substring(psn + 6).trim();
 		return "You don't seem to have the right ingredients unfortunately to " + restOfStatement + ".";
 	}
-	
-	
+
+
 	/**
-	 * Take a statement with "I <something> you" and transform it into 
+	 * Take a statement with "I <something> you" and transform it into
 	 * "Why do you <something> me?"
 	 * @param statement the user statement, assumed to contain "I" followed by "you"
 	 * @return the transformed statement
@@ -157,17 +157,17 @@ public class ChatBot3
 			statement = statement.substring(0, statement
 					.length() - 1);
 		}
-		
+
 		int psnOfI = findKeyword (statement, "I", 0);
 		int psnOfYou = findKeyword (statement, "you", psnOfI);
-		
+
 		String restOfStatement = statement.substring(psnOfI + 1, psnOfYou).trim();
 		return "Why do you " + restOfStatement + " me?";
 	}
-	
 
-	
-	
+
+
+
 	/**
 	 * Search for one word in phrase. The search is not case
 	 * sensitive. This method will check that the given goal
@@ -185,7 +185,7 @@ public class ChatBot3
 	 *         statement or -1 if it's not found
 	 */
 	private int findKeyword(String statement, String goal,
-			int startPos)
+							int startPos)
 	{
 		String phrase = statement.trim().toLowerCase();
 		goal = goal.toLowerCase();
@@ -216,9 +216,9 @@ public class ChatBot3
 			// found the word
 			if (((before.compareTo("a") < 0) || (before
 					.compareTo("z") > 0)) // before is not a
-											// letter
+					// letter
 					&& ((after.compareTo("a") < 0) || (after
-							.compareTo("z") > 0)))
+					.compareTo("z") > 0)))
 			{
 				return psn;
 			}
@@ -231,11 +231,11 @@ public class ChatBot3
 
 		return -1;
 	}
-	
+
 	/**
 	 * Search for one word in phrase.  The search is not case sensitive.
 	 * This method will check that the given goal is not a substring of a longer string
-	 * (so, for example, "I know" does not contain "no").  The search begins at the beginning of the string.  
+	 * (so, for example, "I know" does not contain "no").  The search begins at the beginning of the string.
 	 * @param statement the string to search
 	 * @param goal the string to search for
 	 * @return the index of the first occurrence of goal in statement or -1 if it's not found
@@ -257,16 +257,10 @@ public class ChatBot3
 		}
 		int psn = findKeyword (statement, "How do I make", 0);
 		String restOfStatement = statement.substring(psn + 13).trim();
-		for(int i = 0; i < restOfStatement.length();i++)
-		{
-			if(restOfStatement.substring(i,i+1).equals(""))
-			{
-				\
-			}
-		}
-		return "https://www.mycookbook-online.net/search_result/?q=" + restOfStatement + "&lang=en";
+		String clean = restOfStatement.replaceAll("\\s+","");
+		return "https://www.mycookbook-online.net/search_result/?q=" + clean + "&lang=en";
 	}
-	
+
 
 
 	/**
@@ -277,16 +271,16 @@ public class ChatBot3
 	{
 		Random r = new Random ();
 		if (emotion == 0)
-		{	
+		{
 			return randomNeutralResponses [r.nextInt(randomNeutralResponses.length)];
 		}
 		if (emotion < 0)
-		{	
+		{
 			return randomAngryResponses [r.nextInt(randomAngryResponses.length)];
-		}	
+		}
 		return randomHappyResponses [r.nextInt(randomHappyResponses.length)];
 	}
-	
+
 	private String [] randomNeutralResponses = {"Do you need any help?",
 			"What do you want to eat?",
 			"Sounds interesting.",
