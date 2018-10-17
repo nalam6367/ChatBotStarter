@@ -36,7 +36,7 @@ import java.util.Scanner;
 				}
 				else
 				{
-					chatbot2.chatLoop("4");
+					chatbot4.chatLoop("4");
 				}
 
 
