@@ -26,17 +26,17 @@ import java.util.Scanner;
 				{
 					chatbot1.chatLoop("1");
 				}
-				else if(statement ==2)
+				else if(statement == 2)
 				{
 					chatbot2.chatLoop("1");
 				}
-				else if(statement ==3)
+				else if(statement == 3)
 				{
 					chatbot3.chatLoop("1");
 				}
 				else
 				{
-					chatbot2.chatLoop("1");
+					chatbot2.chatLoop("4");
 				}
 
 
