@@ -78,6 +78,7 @@ public class ChatBot2
 			// int length = playlist.length;
 			//playlist[length+1] = choice;
 			//}
+			emotion++;
 		}
 		else if (findKeyword(statement, "Rock") >= 0)
 		{
@@ -89,6 +90,7 @@ public class ChatBot2
 			// int length = playlist.length;
 			//playlist[length+1] = choice;
 			//}
+			emotion++;
 		}
 		else if (findKeyword(statement, "EDM") >= 0)
 		{
@@ -100,6 +102,7 @@ public class ChatBot2
 			// int length = playlist.length;
 			//playlist[length+1] = choice;
 			//}
+			emotion++;
 		}
 		else if (findKeyword(statement, "R&B") >= 0)
 		{
@@ -111,6 +114,7 @@ public class ChatBot2
 			// int length = playlist.length;
 			//playlist[length+1] = choice;
 			//}
+			emotion++;
 		}
 		else if (findKeyword(statement, "Tropical") >= 0)
 		{
@@ -122,6 +126,7 @@ public class ChatBot2
 			// int length = playlist.length;
 			//playlist[length+1] = choice;
 			//}
+			emotion++;
 		}
 		else if (findKeyword(statement, "Country") >= 0)
 		{
@@ -133,6 +138,7 @@ public class ChatBot2
 			// int length = playlist.length;
 			//playlist[length+1] = choice;
 			//}
+			emotion++;
 		}
 		else if (findKeyword(statement, "Progressive House") >= 0)
 		{
@@ -144,6 +150,7 @@ public class ChatBot2
 			// int length = playlist.length;
 			//playlist[length+1] = choice;
 			//}
+			emotion++;
 		}
 		else if (findKeyword(statement, "Jazz") >= 0)
 		{
@@ -155,6 +162,7 @@ public class ChatBot2
 			// int length = playlist.length;
 			//playlist[length+1] = choice;
 			//}
+			emotion++;
 		}
 		else if (findKeyword(statement, "Soundtracks") >= 0)
 		{
@@ -172,7 +180,7 @@ public class ChatBot2
 			//{
 			// int length = playlist.length;
 			//playlist[length+1] = choice;
-
+			emotion++;
 		}
 		// Response transforming I want to statement
 		else if (findKeyword(statement, "I want to", 0) >= 0)
@@ -208,11 +216,14 @@ public class ChatBot2
 	private String [] randomTropicalResponse = {"Mon Lafarte by El Beso", "La Murga by Hector Lavoe", "De Coloares by Milly Quezada", "El Gil de Tu Ex by Santaferia", "Tiburon by Proyecto Uno", "Adios Amor by Andy Andy"};
 	private String [] randomCountryResponse = {"Hangin' On by Chris Young", "I Don't Know About You by Chris Lane", "Here Tonight by Brett Young", "Talk You Out Of It by Florida Georgia Line", "Good Girl by Dustin Lynch", "What Makes You Country by Luke Bryan", "Turnin' Me On by Blake Shelton"};
 	private String [] randomProgressiveHouseResponse = {"Hope Endures by Guilty Spark", "In Time by Peace Treaty", "Aurora by Holbrook", "Roof Park by Matt Fax", "Anthem by EDX", "Assioma by Bottai", "Chills by Marco V", "Know My Love by Matt Nash", "Spaceman by Tim Mason"};
-	private String [] randomJazzResponse = {"Infant Eyes by Fred Hersch Trio", "Curves by Tord Gustavsen Trio", "Drew Me Nearer by Joey Alexander", "Sad Tune by European Jazz Trio", "Taplow by Eyolf Dale", "I'll Wait and Pray by John Coltrane", "So In Love by Nestor Torres", "So Lovely by Ben Wolfe"}
+	private String [] randomJazzResponse = {"Infant Eyes by Fred Hersch Trio", "Curves by Tord Gustavsen Trio", "Drew Me Nearer by Joey Alexander", "Sad Tune by European Jazz Trio", "Taplow by Eyolf Dale", "I'll Wait and Pray by John Coltrane", "So In Love by Nestor Torres", "So Lovely by Ben Wolfe"};
 	private String [] randomSoundtracksResponse = {"The Greatest Showman", "Cinderella", "Beauty and the Beast", "Game of Thrones", "Hamilton", "The Sound of Music"};
 	private String [] greatestShowman = {"The Greatest Showman by Cast","A Million Dreams by Hugh Jackman", "Come Alive by Cast", "Never Enough by Loren Allred", "This Is Me by Keala Settle", "Rewrite the Stars by Zac Efron and Zendaya", "From Now On by Keala Settle"};
 	private String [] cinderella = {"A Golden Childhood by Patrick Doyle", "The Freat Secret by Patric Doyle", "A New Family by Patrick Doyle", "The Stag by Patrick Doyle","Fairy Godmother by Patrick Doyle", "A Secret Garden by Patrick Doyle","The Slipper by Patrick Doyle","Strong by Sonna Rele", "A Dream Is a Wish Your Heart Makes by Al Hoffman"};
-
+	//private String [] beautyAndTheBeast = {""};
+	//private String [] gameOfThrones ={""};
+	//private String [] hamilton = {""};
+	//private String sounfOfMusic = {""};
 	/**
 	 * Take a statement with "I want to <something>." and transform it into
 	 * "Why do you want to <something>?"
@@ -402,3 +413,4 @@ public class ChatBot2
 			"Could you say that again?"};
 	private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!", "Don't talk to me", "Shut up", "No", "I'm mad"};
 	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes.", "I'm happy today, are you?"};
+}

@@ -16,7 +16,7 @@ import java.util.Scanner;
 				ChatBot1 chatbot1 = new ChatBot1();
 				ChatBot2 chatbot2 = new ChatBot2();
 				ChatBot3 chatbot3 = new ChatBot3();
-				ChatBot4 chatbot4 = new ChatBot4();
+				//ChatBot4 chatbot4 = new ChatBot4();
 
 
 				Scanner in = new Scanner (System.in);
@@ -30,14 +30,14 @@ import java.util.Scanner;
 				{
 					chatbot2.chatLoop("1");
 				}
-				else if(statement == 3)
+				else
 				{
 					chatbot3.chatLoop("1");
 				}
-				else
-				{
-					chatbot4.chatLoop("4");
-				}
+				//else
+				//{
+					//chatbot4.chatLoop("4");
+				//}
 
 
 
