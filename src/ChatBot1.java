@@ -285,3 +285,22 @@ public class ChatBot1
 	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
 	
 }
+
+	private string get RandomResponseWhenasked ()
+		{
+			randomNeutralResponses= { " So What exactly is that, or how would you explain this situation" +
+
+
+			}
+               if (ppl.known()) {
+				   System.out.println("HI""+namer+""Good to see you again!");
+			   }
+			   else {
+			   	System.out.println ("I don't think we have met before");
+			   	System.out.println ("if uit is groppling again  then i m")
+
+
+			   }
+				}
+
+			   }
