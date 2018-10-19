@@ -1,17 +1,16 @@
 import java.util.Random;
 import java.util.Scanner;
-//Christina Chau
+
 /**
- * A program to carry on conversations with a human user.
+ * A program to carry on conversations with a human user. Nusrat
  * This version:
  * @author Brooklyn Tech CS Department
  * @version September 2018
  */
-public class ChatBot2
+public class ChatBot1
 {
 	//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
 	int emotion = 0;
-
 
 	/**
 	 * Runs the conversation for this particular chatbot, should allow switching to other chatbots.
@@ -20,6 +19,7 @@ public class ChatBot2
 	public void chatLoop(String statement)
 	{
 		Scanner in = new Scanner (System.in);
+
 		System.out.println (getGreeting());
 
 
@@ -41,7 +41,7 @@ public class ChatBot2
 	 */	
 	public String getGreeting()
 	{
-		return "Let's play some music! What kind of music do you want to listen to?";
+		return "Hi, what is up?";
 	}
 	
 	/**
@@ -53,121 +53,38 @@ public class ChatBot2
 	 */
 	public String getResponse(String statement)
 	{
-		String response = "";
-		String choice = "";
-		String song = "";
-		//String []playlist= {};
-		Random r = new Random ();
+		String response = " ";
+		
 		if (statement.length() == 0)
 		{
-			response =  randomReplyResponse [r.nextInt(randomReplyResponse.length)];
+			response = "Say something, please.";
+
+
 		}
+
 
 		else if (findKeyword(statement, "no") >= 0)
 		{
-			response = randomSadResponse [r.nextInt(randomSadResponse.length)];
-			emotion--;
+			response = "Why so negative?";
+                	emotion--;
 		}
-		else if (findKeyword(statement, "Pop") >= 0)
+		
+		else if (findKeyword(statement, "levin") >= 0)
 		{
-			choice = randomPopResponse [r.nextInt(randomPopResponse.length)];
-		    response = "You should listen to " + choice +" . Would you like to add this to your playlist?";
-			//addSong(statement, "yes");
-			     //(statement.toLowerCase() == "yes")
-                //{
-                   // int length = playlist.length;
-                    //playlist[length+1] = choice;
-                //}
+			response = "More like LevinTheDream, amiright? Hahaha";
+			emotion++;
 		}
-        else if (findKeyword(statement, "Rock") >= 0)
-        {
-            choice = randomRockResponse [r.nextInt(randomRockResponse.length)];
-            response = "You should listen to " + choice +" . Would you like to add this to your playlist?";
-            //addSong(statement, "yes");
-            //(statement.toLowerCase() == "yes")
-            //{
-            // int length = playlist.length;
-            //playlist[length+1] = choice;
-            //}
-        }
-        else if (findKeyword(statement, "EDM") >= 0)
-        {
-            choice = randomEDMResponse [r.nextInt(randomEDMResponse.length)];
-            response = "You should listen to " + choice +" . Would you like to add this to your playlist?";
-            //addSong(statement, "yes");
-            //(statement.toLowerCase() == "yes")
-            //{
-            // int length = playlist.length;
-            //playlist[length+1] = choice;
-            //}
-        }
-        else if (findKeyword(statement, "R&B") >= 0)
-        {
-            choice = randomRBResponse [r.nextInt(randomRBResponse.length)];
-            response = "You should listen to " + choice +" . Would you like to add this to your playlist?";
-            //addSong(statement, "yes");
-            //(statement.toLowerCase() == "yes")
-            //{
-            // int length = playlist.length;
-            //playlist[length+1] = choice;
-            //}
-        }
-        else if (findKeyword(statement, "Tropical") >= 0)
-        {
-            choice = randomTropicalResponse [r.nextInt(randomTropicalResponse.length)];
-            response = "You should listen to " + choice +" . Would you like to add this to your playlist?";
-            //addSong(statement, "yes");
-            //(statement.toLowerCase() == "yes")
-            //{
-            // int length = playlist.length;
-            //playlist[length+1] = choice;
-            //}
-        }
-        else if (findKeyword(statement, "Country") >= 0)
-        {
-            choice = randomCountryResponse [r.nextInt(randomCountryResponse.length)];
-            response = "You should listen to " + choice +" . Would you like to add this to your playlist?";
-            //addSong(statement, "yes");
-            //(statement.toLowerCase() == "yes")
-            //{
-            // int length = playlist.length;
-            //playlist[length+1] = choice;
-            //}
-        }
-        else if (findKeyword(statement, "Progressive House") >= 0)
-        {
-            choice = randomProgressiveHouseResponse [r.nextInt(randomProgressiveHouseResponse.length)];
-            response = "You should listen to " + choice +" . Would you like to add this to your playlist?";
-            //addSong(statement, "yes");
-            //(statement.toLowerCase() == "yes")
-            //{
-            // int length = playlist.length;
-            //playlist[length+1] = choice;
-            //}
-        }
-        else if (findKeyword(statement, "Jazz") >= 0)
-        {
-            choice = randomJazzResponse [r.nextInt(randomJazzResponse.length)];
-            response = "You should listen to " + choice +" . Would you like to add this to your playlist?";
-            //addSong(statement, "yes");
-            //(statement.toLowerCase() == "yes")
-            //{
-            // int length = playlist.length;
-            //playlist[length+1] = choice;
-            //}
-        }
-        else if (findKeyword(statement, "Soundtracks") >= 0)
-        {
-            choice = randomSoundtracksResponse [r.nextInt(randomSoundtracksResponse.length)];
-            song = greatestShowman [r.nextInt(greatestShowman.length)];
-            response = "You should listen to " + song + " from " + choice + " . Would you like to add it to your playlist?";
-            //addSong(statement, "yes");
-            //(statement.toLowerCase() == "yes")
-            //{
-            // int length = playlist.length;
-            //playlist[length+1] = choice;
-            //}
-        }
+		else if (findKeyword(statement, "folwell") >= 0)
+		{
+			response = "Watch your backpacks, Mr. Folwell doesn't fall well. Hahaha";
+			emotion++;
+		}
+		else if (findKeyword(statement, "goldman") >= 0)
+		{
+			response = "Go for the gold, man. Hahaha";
+			emotion++;
+		}
+
 		// Response transforming I want to statement
 		else if (findKeyword(statement, "I want to", 0) >= 0)
 		{
@@ -177,14 +94,6 @@ public class ChatBot2
 		{
 			response = transformIWantStatement(statement);
 		}
-		else if (findKeyword(statement, "anything", 0) >= 0)
-		{
-			response = "How about" + randomGenreResponse [r.nextInt(randomGenreResponse.length)] + "?";
-		}
-		else if (findKeyword(statement, "choose", 0) >= 0)
-		{
-			response = "How about" + randomGenreResponse [r.nextInt(randomGenreResponse.length)] + "?";
-		}
 		else
 		{
 			response = getRandomResponse();
@@ -192,32 +101,13 @@ public class ChatBot2
 		
 		return response;
 	}
-	private String [] randomReplyResponse = {"Say something, please.", "Why aren't you answering?", "Stop ignoring me", "What's wrong?", "Do you want to listen to music?"};
-	private String [] randomSadResponse = {"Why so negative?", "You're making me sad", "Whst's wrong?", "What made you this way?"};
-	private String [] randomGenreResponse = {"Pop", "Rock", "EDM", "R&B", "Tropical", "Country", "Progressive House","Jazz", "Soundtracks", "KPop", "Classical"};
-	private String [] randomPopResponse = {"God is a Woman by Ariana Grande", "This Feeling by The Chainsmokers", "Lost in Japan by Shawn Mendes", "In the Name of Love by Martin Garrix", "Cheap Thrills by Sia", "Young Dumb and Broke by Khalid", "Shape of You by Ed Sheeran", "Attention by Charlie Puth", "Love Yourself by Jusdtin Bieber"};
-	private String [] randomRockResponse = {"My Blood by Twenty One Pilots", "Forever and Ever Moe by Nothing But Thieves", "Stronger by The Score", "You'll Be Fine by Palaye Royale", "Halo by Boston Manor", "The Dark by Thrice", "Anarchist by YUNGBLUD"};
-	private String [] randomEDMResponse = {"Happier by Marshmello", "Born to Be Yours by Imagine Dragons", "Heroes by Alesso", "Clarity by Zedd", "Satellite by Tritonal", "Surrender by Cash Cash", "Still with Me by Tritonal", "Calling by Sebastian Ingrosso"};
-	private String [] randomRBResponse = {"You Decide by Usher", "Feels Like Summer by Childish Gambino", "Wanna Be by The Internet","Call Out My Name by The Weeknd", "Love Lies by Normani","Don't Matter to Me by Drake", "Addicted by VanJess"};
-	private String [] randomTropicalResponse = {"Mon Lafarte by El Beso", "La Murga by Hector Lavoe", "De Coloares by Milly Quezada", "El Gil de Tu Ex by Santaferia", "Tiburon by Proyecto Uno", "Adios Amor by Andy Andy"};
-	private String [] randomCountryResponse = {"Hangin' On by Chris Young", "I Don't Know About You by Chris Lane", "Here Tonight by Brett Young", "Talk You Out Of It by Florida Georgia Line", "Good Girl by Dustin Lynch", "What Makes You Country by Luke Bryan", "Turnin' Me On by Blake Shelton"};
-	private String [] randomProgressiveHouseResponse = {"Hope Endures by Guilty Spark", "In Time by Peace Treaty", "Aurora by Holbrook", "Roof Park by Matt Fax", "Anthem by EDX", "Assioma by Bottai", "Chills by Marco V", "Know My Love by Matt Nash", "Spaceman by Tim Mason"};
-	private String [] randomJazzResponse = {"Infant Eyes by Fred Hersch Trio", "Curves by Tord Gustavsen Trio", "Drew Me Nearer by Joey Alexander", "Sad Tune by European Jazz Trio", "Taplow by Eyolf Dale", "I'll Wait and Pray by John Coltrane", "So In Love by Nestor Torres", "So Lovely by Ben Wolfe"}
-	private String [] randomSoundtracksResponse = {"The Greatest Showman", "Cinderella", "Beauty and the Beast", "Game of Thrones", "Hamilton", "The Sound of Music"};
-	private String [] greatestShowman = {};
+	
 	/**
 	 * Take a statement with "I want to <something>." and transform it into 
 	 * "Why do you want to <something>?"
 	 * @param statement the user statement, assumed to contain "I want to"
 	 * @return the transformed statement
 	 */
-	//private String addSong(String statement, String goal) //adds song onto playlist
-    //{
-        //goal = goal.toLowerCase();
-        //if (goal == "yes")
-            //playlist[]
-    //}
-
 	private String transformIWantToStatement(String statement)
 	{
 		//  Remove the final period, if there is one
@@ -385,15 +275,23 @@ public class ChatBot2
 	
 	private String [] randomNeutralResponses = {"Interesting, tell me more",
 			"Hmmm.",
-			"Oof",
-			"Why?",
 			"Do you really think so?",
 			"You don't say.",
 			"It's all boolean to me.",
 			"So, would you like to go for a walk?",
-			"Could you say that again?"};
-	private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!", "Don't talk to me", "Shut up", "No", "I'm mad"};
-	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes.", "I'm happy today, are you?"};
+			"Could you say that again?",
+			"Would you like to?"};
+	private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!"};
+	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
+    private void getRandomResponseWhenasked()
+    {
+        String randomNeutralResponses= "So What exactly is that, or how would you explain this situation";
+        //if (ppl.known()) {
+            //System.out.println("HI" + namer+ "Good to see you again!");
+        }
+        //else {
+            //System.out.println ("I don't think we have met before");
+            //System.out.println ("if uit is groppling again  then i m");
 
-	
 }
+
