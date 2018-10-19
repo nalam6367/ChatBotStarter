@@ -1,12 +1,8 @@
 import java.util.Random;
 import java.util.Scanner;
 
-/**Jackie Wu
- * A program to carry on conversations with a human user.
- * This version:
- * @author Brooklyn Tech CS Department
- * @version September 2018
- */
+/**Jackie Wu*/
+
 public class ChatBot3
 {
 	//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
@@ -14,10 +10,6 @@ public class ChatBot3
 
 
 
-	/**
-	 * Runs the conversation for this particular chatbot, should allow switching to other chatbots.
-	 * @param statement the statement typed by the user
-	 */
 	public void chatLoop(String statement)
 	{
 		Scanner in = new Scanner (System.in);
@@ -37,12 +29,12 @@ public class ChatBot3
 
 	}
 	/**
-	 * Get a default greeting 	
+	 * Get a default greeting
 	 * @return a greeting
 	 */
 	public String getGreeting()
 	{
-		return "Dam son you must be hungry af";
+		return "Dam son you must be hungry, ask me a question on what you want to do about breakfast.";
 	}
 
 	/**
@@ -95,9 +87,9 @@ public class ChatBot3
 	}
 
 	/**
-	 * Take a statement with "I want to <something>." and transform it into
-	 * "Why do you want to <something>?"
-	 * @param statement the user statement, assumed to contain "I want to"
+	 * Take a statement with "Do I have <something>." and transform it into
+	 * "I don't think you have <something>?"
+	 * @param statement the user statement, assumed to contain "Do I have"
 	 * @return the transformed statement
 	 */
 	private String transformIWantToStatement(String statement)
@@ -118,9 +110,9 @@ public class ChatBot3
 
 
 	/**
-	 * Take a statement with "I want <something>." and transform it into
-	 * "Would you really be happy if you had <something>?"
-	 * @param statement the user statement, assumed to contain "I want"
+	 * Take a statement with "Can I make <something>." and transform it into
+	 * "You don't seem to have the right ingredients unfortunately to <something>?"
+	 * @param statement the user statement, assumed to contain "Can I make"
 	 * @return the transformed statement
 	 */
 	private String transformIWantStatement(String statement)
@@ -141,39 +133,6 @@ public class ChatBot3
 
 
 	/**
-	 * Take a statement with "I <something> you" and transform it into
-	 * "Why do you <something> me?"
-	 * @param statement the user statement, assumed to contain "I" followed by "you"
-	 * @return the transformed statement
-	 */
-	private String transformIYouStatement(String statement)
-	{
-		//  Remove the final period, if there is one
-		statement = statement.trim();
-		String lastChar = statement.substring(statement
-				.length() - 1);
-		if (lastChar.equals("."))
-		{
-			statement = statement.substring(0, statement
-					.length() - 1);
-		}
-
-		int psnOfI = findKeyword (statement, "I", 0);
-		int psnOfYou = findKeyword (statement, "you", psnOfI);
-
-		String restOfStatement = statement.substring(psnOfI + 1, psnOfYou).trim();
-		return "Why do you " + restOfStatement + " me?";
-	}
-
-
-
-
-	/**
-	 * Search for one word in phrase. The search is not case
-	 * sensitive. This method will check that the given goal
-	 * is not a substring of a longer string (so, for
-	 * example, "I know" does not contain "no").
-	 *
 	 * @param statement
 	 *            the string to search
 	 * @param goal
@@ -244,6 +203,11 @@ public class ChatBot3
 	{
 		return findKeyword (statement, goal, 0);
 	}
+	/**
+	 * Take a statement with "How do I make  <something>." and transform it into a clickable link for the user
+	 * @param statement the user statement, assumed to contain "How do I make"
+	 * @return a link
+	 */
 	private String directions(String statement)
 	{
 		//  Remove the final period, if there is one
@@ -257,7 +221,8 @@ public class ChatBot3
 		}
 		int psn = findKeyword (statement, "How do I make", 0);
 		String restOfStatement = statement.substring(psn + 13).trim();
-		return "https://www.mycookbook-online.net/search_result/?q=" + restOfStatement + "&lang=en";
+		String clean = restOfStatement.replaceAll("\\s+","");
+		return "https://www.mycookbook-online.net/search_result/?q=" + clean + "&lang=en";
 	}
 
 
