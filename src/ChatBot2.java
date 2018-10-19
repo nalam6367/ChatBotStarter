@@ -17,9 +17,9 @@ public class ChatBot2
 	 * Runs the conversation for this particular chatbot, should allow switching to other chatbots.
 	 * @param statement the statement typed by the user
 	 */
+	Scanner in = new Scanner (System.in);
 	public void chatLoop(String statement)
 	{
-		Scanner in = new Scanner (System.in);
 		System.out.println (getGreeting());
 
 
@@ -164,10 +164,6 @@ public class ChatBot2
 		{
 			response = transformIWantToStatement(statement);
 		}
-		else if (findKeyword(statement, "I want",0) >= 0)
-		{
-			response = transformIWantStatement(statement);
-		}
 		else if (findKeyword(statement, "random", 0) >= 0) {
 			choice = randomSongResponse[r.nextInt(randomSongResponse.length)];
 			response = "You should listen to " + choice + " . Would you like to add this to your playlist?";
@@ -191,7 +187,7 @@ public class ChatBot2
 			addSong();
 		}
 		else if (findKeyword(statement, "search", 0)>= 0){
-			response = "https://www.google.com/search?q=" +closer+"&oq="+name+of+love"&aqs=chrome..69i57j35i39j0l4.2098j0j7&sourceid=chrome&ie=UTF-8";
+			search();
 		}
 		else
 		{
@@ -200,7 +196,6 @@ public class ChatBot2
 
 		return response;
 	}
-
 	private void addSong(){
 		if (i == 0) {
 			playlist[i] = choice;
@@ -268,20 +263,30 @@ public class ChatBot2
 	 * @param statement the user statement, assumed to contain "I want"
 	 * @return the transformed statement
 	 */
-	private String transformIWantStatement(String statement)
+	private String search()
 	{
+		System.out.println("Please enter the song name");
+		String songName = in.nextLine();
 		//  Remove the final period, if there is one
-		statement = statement.trim();
-		String lastChar = statement.substring(statement
-				.length() - 1);
+		songName = songName.trim();
+		String lastChar = songName.substring(songName.length() - 1);
 		if (lastChar.equals("."))
 		{
-			statement = statement.substring(0, statement
+			songName = songName.substring(0, songName
 					.length() - 1);
 		}
-		int psn = findKeyword (statement, "I want", 0);
-		String restOfStatement = statement.substring(psn + 6).trim();
-		return "Would you really be happy if you had " + restOfStatement + "?";
+		//int psn = findKeyword (statement, "I want", 0);
+		//String restOfStatement = statement.substring(psn + 6).trim();
+		if(songName.indexOf(" ")==-1){
+			return  "https://www.google.com/search?q=" + songName +"&oq=&aqs=chrome..69i57j35i39j0l4.2098j0j7&sourceid=chrome&ie=UTF-8";
+		}
+		else{
+			while(songName.indexOf(" ") > -1){
+				int position = songName.indexOf(" ");
+				songName = songName.substring(0, position) + songName.substring(position + 1);
+			}
+			return "https://www.google.com/search?q=" + songName +"&oq=&aqs=chrome..69i57j35i39j0l4.2098j0j7&sourceid=chrome&ie=UTF-8";
+		}
 	}
 	/**
 	 * Search for one word in phrase. The search is not case
@@ -299,8 +304,7 @@ public class ChatBot2
 	 * @return the index of the first occurrence of goal in
 	 *         statement or -1 if it's not found
 	 */
-	private int findKeyword(String statement, String goal,
-							int startPos)
+	private int findKeyword(String statement, String goal, int startPos)
 	{
 		String phrase = statement.trim().toLowerCase();
 		goal = goal.toLowerCase();
