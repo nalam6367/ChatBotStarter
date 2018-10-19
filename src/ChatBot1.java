@@ -283,24 +283,15 @@ public class ChatBot1
 			"Would you like to?"};
 	private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!"};
 	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
-	
+    private void getRandomResponseWhenasked()
+    {
+        String randomNeutralResponses= "So What exactly is that, or how would you explain this situation";
+        //if (ppl.known()) {
+            //System.out.println("HI" + namer+ "Good to see you again!");
+        }
+        //else {
+            //System.out.println ("I don't think we have met before");
+            //System.out.println ("if uit is groppling again  then i m");
+
 }
 
-	private string get RandomResponseWhenasked ()
-		{
-			randomNeutralResponses= { " So What exactly is that, or how would you explain this situation" +
-
-
-			}
-               if (ppl.known()) {
-				   System.out.println("HI""+namer+""Good to see you again!");
-			   }
-			   else {
-			   	System.out.println ("I don't think we have met before");
-			   	System.out.println ("if uit is groppling again  then i m")
-
-
-			   }
-				}
-
-			   }
