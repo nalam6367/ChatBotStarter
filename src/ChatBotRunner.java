@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -20,23 +21,27 @@ import java.util.Scanner;
 
 
 				Scanner in = new Scanner (System.in);
-				System.out.println("Good Morning it is 6 o'clock. What would you like to talk about? (1)Clothing (2)Music (3)Breakfast (4)Weather");
+				System.out.println("What is your name?");
+				String name = in.nextLine();
+				Random r = new Random ();
+				int [] time = {5,6,7,8,9,10,11};
+				System.out.println("Good Morning " + name+ ", it is "+ time [r.nextInt(time.length)] + " o'clock. What would you like to talk about? (1)Clothing (2)Music (3)Breakfast (4)Weather");
 				int statement = in.nextInt();
 				if (statement == 1)
 				{
-					chatbot1.chatLoop("1");
+					chatbot1.chatLoop(name);
 				}
 				else if(statement == 2)
 				{
-					chatbot2.chatLoop("1");
+					chatbot2.chatLoop(name);
 				}
 				else if(statement == 3)
 				{
-					chatbot3.chatLoop("1");
+					chatbot3.chatLoop(name);
 				}
 				else if(statement == 4)
 				{
-					chatbot4.chatLoop("1");
+					chatbot4.chatLoop(name);
 				}
 				else
 				{

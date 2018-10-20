@@ -42,7 +42,7 @@ public class ChatBot4
 	 */
 	public String getGreeting()
 	{
-		return "Hi, what is up?";
+		return "	Welcome to the Bot Channel.";
 	}
 
 	/**

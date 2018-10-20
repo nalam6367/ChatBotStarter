@@ -34,7 +34,7 @@ public class ChatBot3
 	 */
 	public String getGreeting()
 	{
-		return "Dam son you must be hungry, ask me a question on what you want to do about breakfast.";
+		return "Welcome to Bot's Kitchen. Dam son you must be hungry, ask me a question on what you want to do about breakfast.";
 	}
 
 	/**

@@ -17,11 +17,12 @@ public class ChatBot2
 	 * Runs the conversation for this particular chatbot, should allow switching to other chatbots.
 	 * @param statement the statement typed by the user
 	 */
+	String name = "";
 	Scanner in = new Scanner (System.in);
 	public void chatLoop(String statement)
 	{
 		System.out.println (getGreeting());
-
+		name = statement;
 
 		while (!statement.equals("Bye"))
 		{
@@ -54,88 +55,104 @@ public class ChatBot2
 	int i = 0;
 	String []playlist = {"","","","","","","","","","","","","","","",""};
 	String choice = "";
+	String []genre = {""};
 	boolean music = false;
+	Random r = new Random ();
 	public String getResponse(String statement)
 	{
 		String response = "";
-		Random r = new Random ();
 		if (statement.length() == 0)
 		{
 			response =  randomReplyResponse [r.nextInt(randomReplyResponse.length)];
 		}
 
-		else if (findKeyword(statement, "no") >= 0)
+		else if (findKeyword(statement, "no") >= 0 && !music)
 		{
 			response = randomSadResponse [r.nextInt(randomSadResponse.length)];
 			emotion--;
 		}
+		else if (findKeyword(statement, "no") >= 0 && music)
+		{
+			System.out.println("Aww okay. You can always add it later");
+			music = false;
+		}
 		else if (findKeyword(statement, "Pop") >= 0)
 		{
-			choice = randomPopResponse [r.nextInt(randomPopResponse.length)];
+			genre = pop;
+			choice = pop [r.nextInt(pop.length)];
 			response = "You should listen to " + choice +" . Would you like to add this to your playlist?";
 			music = true;
 			emotion++;
 		}
 		else if (findKeyword(statement, "Rock") >= 0)
 		{
-			choice = randomRockResponse [r.nextInt(randomRockResponse.length)];
+			genre = rock;
+			choice = rock[r.nextInt(rock.length)];
 			response = "You should listen to " + choice +" . Would you like to add this to your playlist?";
 			music = true;
 			emotion++;
 		}
 		else if (findKeyword(statement, "EDM") >= 0)
 		{
-			choice = randomEDMResponse [r.nextInt(randomEDMResponse.length)];
+			genre = EDM;
+			choice = EDM [r.nextInt(EDM.length)];
 			response = "You should listen to " + choice +" . Would you like to add this to your playlist?";
 			music = true;
 			emotion++;
 		}
 		else if (findKeyword(statement, "R&B") >= 0)
 		{
-			choice = randomRBResponse [r.nextInt(randomRBResponse.length)];
+			genre = RB;
+			choice = RB [r.nextInt(RB.length)];
 			response = "You should listen to " + choice +" . Would you like to add this to your playlist?";
 			music = true;
 			emotion++;
 		}
 		else if (findKeyword(statement, "Tropical") >= 0)
 		{
-			choice = randomTropicalResponse [r.nextInt(randomTropicalResponse.length)];
+			genre = tropical;
+			choice = tropical [r.nextInt(tropical.length)];
 			response = "You should listen to " + choice +" . Would you like to add this to your playlist?";
 			music = true;
 			emotion++;
 		}
 		else if (findKeyword(statement, "Country") >= 0)
 		{
-			choice = randomCountryResponse [r.nextInt(randomCountryResponse.length)];
+			genre = country;
+			choice = country [r.nextInt(country.length)];
 			response = "You should listen to " + choice +" . Would you like to add this to your playlist?";
 			music = true;
 			emotion++;
 		}
 		else if (findKeyword(statement, "Progressive House") >= 0)
 		{
-			choice = randomProgressiveHouseResponse [r.nextInt(randomProgressiveHouseResponse.length)];
+			genre = progressiveHouse;
+			choice = progressiveHouse [r.nextInt(progressiveHouse.length)];
 			response = "You should listen to " + choice +" . Would you like to add this to your playlist?";
 			music = true;
 			emotion++;
 		}
 		else if (findKeyword(statement, "Jazz") >= 0)
 		{
-			choice = randomJazzResponse [r.nextInt(randomJazzResponse.length)];
+			genre = jazz;
+			choice = jazz [r.nextInt(jazz.length)];
 			response = "You should listen to " + choice +" . Would you like to add this to your playlist?";
 			music = true;
 			emotion++;
 		}
 		else if (findKeyword(statement, "KPop") >= 0)
 		{
-			choice = randomkPopResponse [r.nextInt(randomkPopResponse.length)];
+			genre = kPop;
+			choice = kPop [r.nextInt(kPop.length)];
 			response = "You should listen to " + choice +" . Would you like to add this to your playlist?";
 			music = true;
 			emotion++;
 		}
 		else if (findKeyword(statement, "Soundtracks") >= 0)
 		{
+			genre = soundtracks;
 			String track = "";
-			track = randomSoundtracksResponse [r.nextInt(randomSoundtracksResponse.length)];
+			track = soundtracks [r.nextInt(soundtracks.length)];
 			if (track == "The Greatest Showman"){
 				choice = greatestShowman [r.nextInt(greatestShowman.length)];
 
@@ -165,12 +182,14 @@ public class ChatBot2
 			response = transformIWantToStatement(statement);
 		}
 		else if (findKeyword(statement, "random", 0) >= 0) {
-			choice = randomSongResponse[r.nextInt(randomSongResponse.length)];
+			genre = random;
+			choice = random[r.nextInt(random.length)];
 			response = "You should listen to " + choice + " . Would you like to add this to your playlist?";
 			music = true;
 			emotion++;
 		}
 		else if (findKeyword(statement, "playlist", 0) >=0){
+			genre = playlist;
 			if (i  > 0){
 				choice = playlist[r.nextInt(i)];
 				response = "Now playing " + choice + " from playlist";
@@ -199,40 +218,47 @@ public class ChatBot2
 	private void addSong(){
 		if (i == 0) {
 			playlist[i] = choice;
+			System.out.println(playlist[i] + " added");
 			i++;
 			music = false;
 		}
 		else {
 			i++;
 			playlist[i] = choice;
+			System.out.println(playlist[i] + " added");
 			music = false;
 		}
 		int num = 0;
+		System.out.println(name + "'s Playlist: ");
 		while(num <= i){
-			System.out.println (playlist[num] + " added");
+			System.out.println (playlist[num]);
 			num++;
 		}
+		choice = genre[r.nextInt(genre.length)];
+		System.out.print("You should listen to " + choice + " . Would you like to add this to your playlist?");
+		music = true;
+		emotion++;
 	}
-	private String [] randomSongResponse = {"Wild by Troye Sivan", "Faded by Alan Walker", "Boys Like You by Meghan Trainor", "Blackout by Tritonal", "Cold Water by Major Lazer", "Ain't My Fault by Zara Larsson", "Sooner or Later by Aaron Carter", "Candles by Morgan Page", "Matches by Cash Cash", "You Don't Know Me by Jaz Jones", "There's Nothing Holding Me Back by Shawn Mendes", "The Cure by Lady Gaga", "To Be Human by Sia", "How Long by Charlie Puth", "Mistakes by Basenji"};
+	private String [] random = {"Wild by Troye Sivan", "Faded by Alan Walker", "Boys Like You by Meghan Trainor", "Blackout by Tritonal", "Cold Water by Major Lazer", "Ain't My Fault by Zara Larsson", "Sooner or Later by Aaron Carter", "Candles by Morgan Page", "Matches by Cash Cash", "You Don't Know Me by Jaz Jones", "There's Nothing Holding Me Back by Shawn Mendes", "The Cure by Lady Gaga", "To Be Human by Sia", "How Long by Charlie Puth", "Mistakes by Basenji"};
 	private String [] randomReplyResponse = {"Say something, please.", "Why aren't you answering?", "Stop ignoring me", "What's wrong?", "Do you want to listen to music?"};
 	private String [] randomSadResponse = {"Why so negative?", "You're making me sad", "Whst's wrong?", "What made you this way?"};
 	private String [] randomGenreResponse = {"Pop", "Rock", "EDM", "R&B", "Tropical", "Country", "Progressive House","Jazz", "Soundtracks", "KPop"};
-	private String [] randomPopResponse = {"God is a Woman by Ariana Grande", "This Feeling by The Chainsmokers", "Lost in Japan by Shawn Mendes", "In the Name of Love by Martin Garrix", "Cheap Thrills by Sia", "Young Dumb and Broke by Khalid", "Shape of You by Ed Sheeran", "Attention by Charlie Puth", "Love Yourself by Justin Bieber"};
-	private String [] randomRockResponse = {"My Blood by Twenty One Pilots", "Forever and Ever Moe by Nothing But Thieves", "Stronger by The Score", "You'll Be Fine by Palaye Royale", "Halo by Boston Manor", "The Dark by Thrice", "Anarchist by YUNGBLUD"};
-	private String [] randomEDMResponse = {"Happier by Marshmello", "Born to Be Yours by Imagine Dragons", "Heroes by Alesso", "Clarity by Zedd", "Satellite by Tritonal", "Surrender by Cash Cash", "Still with Me by Tritonal", "Calling by Sebastian Ingrosso"};
-	private String [] randomRBResponse = {"You Decide by Usher", "Feels Like Summer by Childish Gambino", "Wanna Be by The Internet","Call Out My Name by The Weeknd", "Love Lies by Normani","Don't Matter to Me by Drake", "Addicted by VanJess"};
-	private String [] randomTropicalResponse = {"Mon Lafarte by El Beso", "La Murga by Hector Lavoe", "De Coloares by Milly Quezada", "El Gil de Tu Ex by Santaferia", "Tiburon by Proyecto Uno", "Adios Amor by Andy Andy"};
-	private String [] randomCountryResponse = {"Hangin' On by Chris Young", "I Don't Know About You by Chris Lane", "Here Tonight by Brett Young", "Talk You Out Of It by Florida Georgia Line", "Good Girl by Dustin Lynch", "What Makes You Country by Luke Bryan", "Turnin' Me On by Blake Shelton"};
-	private String [] randomProgressiveHouseResponse = {"Hope Endures by Guilty Spark", "In Time by Peace Treaty", "Aurora by Holbrook", "Roof Park by Matt Fax", "Anthem by EDX", "Assioma by Bottai", "Chills by Marco V", "Know My Love by Matt Nash", "Spaceman by Tim Mason"};
-	private String [] randomJazzResponse = {"Infant Eyes by Fred Hersch Trio", "Curves by Tord Gustavsen Trio", "Drew Me Nearer by Joey Alexander", "Sad Tune by European Jazz Trio", "Taplow by Eyolf Dale", "I'll Wait and Pray by John Coltrane", "So In Love by Nestor Torres", "So Lovely by Ben Wolfe"};
-	private String [] randomSoundtracksResponse = {"The Greatest Showman", "Cinderella", "Beauty and the Beast", "Game of Thrones", "Hamilton", "The Sound of Music"};
+	private String [] pop = {"God is a Woman by Ariana Grande", "This Feeling by The Chainsmokers", "Lost in Japan by Shawn Mendes", "In the Name of Love by Martin Garrix", "Cheap Thrills by Sia", "Young Dumb and Broke by Khalid", "Shape of You by Ed Sheeran", "Attention by Charlie Puth", "Love Yourself by Justin Bieber"};
+	private String [] rock = {"My Blood by Twenty One Pilots", "Forever and Ever Moe by Nothing But Thieves", "Stronger by The Score", "You'll Be Fine by Palaye Royale", "Halo by Boston Manor", "The Dark by Thrice", "Anarchist by YUNGBLUD"};
+	private String [] EDM = {"Happier by Marshmello", "Born to Be Yours by Imagine Dragons", "Heroes by Alesso", "Clarity by Zedd", "Satellite by Tritonal", "Surrender by Cash Cash", "Still with Me by Tritonal", "Calling by Sebastian Ingrosso"};
+	private String [] RB = {"You Decide by Usher", "Feels Like Summer by Childish Gambino", "Wanna Be by The Internet","Call Out My Name by The Weeknd", "Love Lies by Normani","Don't Matter to Me by Drake", "Addicted by VanJess"};
+	private String [] tropical = {"Mon Lafarte by El Beso", "La Murga by Hector Lavoe", "De Coloares by Milly Quezada", "El Gil de Tu Ex by Santaferia", "Tiburon by Proyecto Uno", "Adios Amor by Andy Andy"};
+	private String [] country = {"Hangin' On by Chris Young", "I Don't Know About You by Chris Lane", "Here Tonight by Brett Young", "Talk You Out Of It by Florida Georgia Line", "Good Girl by Dustin Lynch", "What Makes You Country by Luke Bryan", "Turnin' Me On by Blake Shelton"};
+	private String [] progressiveHouse = {"Hope Endures by Guilty Spark", "In Time by Peace Treaty", "Aurora by Holbrook", "Roof Park by Matt Fax", "Anthem by EDX", "Assioma by Bottai", "Chills by Marco V", "Know My Love by Matt Nash", "Spaceman by Tim Mason"};
+	private String [] jazz = {"Infant Eyes by Fred Hersch Trio", "Curves by Tord Gustavsen Trio", "Drew Me Nearer by Joey Alexander", "Sad Tune by European Jazz Trio", "Taplow by Eyolf Dale", "I'll Wait and Pray by John Coltrane", "So In Love by Nestor Torres", "So Lovely by Ben Wolfe"};
+	private String [] soundtracks = {"The Greatest Showman", "Cinderella", "Beauty and the Beast", "Game of Thrones", "Hamilton", "The Sound of Music"};
 	private String [] greatestShowman = {"The Greatest Showman by Cast","A Million Dreams by Hugh Jackman", "Come Alive by Cast", "Never Enough by Loren Allred", "This Is Me by Keala Settle", "Rewrite the Stars by Zac Efron and Zendaya", "From Now On by Keala Settle"};
-	private String [] cinderella = {"A Golden Childhood by Patrick Doyle", "The Freat Secret by Patric Doyle", "A New Family by Patrick Doyle", "The Stag by Patrick Doyle","Fairy Godmother by Patrick Doyle", "A Secret Garden by Patrick Doyle","The Slipper by Patrick Doyle","Strong by Sonna Rele", "A Dream Is a Wish Your Heart Makes by Al Hoffman"};
+	private String [] cinderella = {"A Golden Childhood by Patrick Doyle", "The Great Secret by Patric Doyle", "A New Family by Patrick Doyle", "The Stag by Patrick Doyle","Fairy Godmother by Patrick Doyle", "A Secret Garden by Patrick Doyle","The Slipper by Patrick Doyle","Strong by Sonna Rele", "A Dream Is a Wish Your Heart Makes by Al Hoffman"};
 	private String [] beautyAndTheBeast = {"Belle by Paige O'Hara", "Gaston by Richard White", "Be OUr Guest by Angela Lansbury", "Beauty and the Beast by Angela Lansbury", "To the Fair by Alan Menken", "Battle on the Tower by Alan Menken"};
 	private String [] gameOfThrones ={"Kingslayer by Ramin Djawadi", "Maester by Ramin Djawadi", "Mother of Dragons by The London Film Orchestra", "A Lannister Always Pays His Debts by Global Stage Orchestra", "What is Dead May Never Die by Global Stage Orchestra", "Wildfire by Ramin Djawadi","Game of Thrones"};
 	private String [] hamilton = {"Alexander Hamilton", "Aaron Burr, Sir", "Farmer Refuted", "You'll Be Back", "A Winter's Ball", "Satisfied"};
 	private String [] soundOfMusic = {"I Have Confidence by Julie Andrews", "Sixteen Going on Seventeen by Charmain Carr", "Climb Ev'ry Mountain by Margery MacKay", "The Sound of Music by Nicholas Hammond", "Do-Re-Mi by Julie Andrews", "So Long, Farewell by Nicholas Hammond", "Edelweiss by Julie Andrews"};
-	private String [] randomkPopResponse = {"Blood Sweat and Tears by BTS", "Flower Road by Big Bang", "Love Scenario by iKon","Don't Recall by KARD", "The Eve by EXO", "As if It's Your Last by Blackpink"};
+	private String [] kPop = {"Blood Sweat and Tears by BTS", "Flower Road by Big Bang", "Love Scenario by iKon","Don't Recall by KARD", "The Eve by EXO", "As if It's Your Last by Blackpink"};
 	/**
 	 * Take a statement with "I want to <something>." and transform it into
 	 * "Why do you want to <something>?"
@@ -263,11 +289,13 @@ public class ChatBot2
 	 * @param statement the user statement, assumed to contain "I want"
 	 * @return the transformed statement
 	 */
-	private String search()
+	private void search()
 	{
 		System.out.println("Please enter the song name");
+		genre = random;
 		String songName = in.nextLine();
 		//  Remove the final period, if there is one
+		choice = songName;
 		songName = songName.trim();
 		String lastChar = songName.substring(songName.length() - 1);
 		if (lastChar.equals("."))
@@ -278,15 +306,19 @@ public class ChatBot2
 		//int psn = findKeyword (statement, "I want", 0);
 		//String restOfStatement = statement.substring(psn + 6).trim();
 		if(songName.indexOf(" ")==-1){
-			return  "https://www.google.com/search?q=" + songName +"&oq=&aqs=chrome..69i57j35i39j0l4.2098j0j7&sourceid=chrome&ie=UTF-8";
+			System.out.println("https://www.google.com/search?q=" + songName +"&oq=&aqs=chrome..69i57j35i39j0l4.2098j0j7&sourceid=chrome&ie=UTF-8");
 		}
 		else{
 			while(songName.indexOf(" ") > -1){
-				int position = songName.indexOf(" ");
-				songName = songName.substring(0, position) + songName.substring(position + 1);
+				songName = songName.replace(" ", "+");
+				//int position = songName.indexOf(" ");
+				//songName = songName.substring(0, position) + songName.substring(position + 1);
+
 			}
-			return "https://www.google.com/search?q=" + songName +"&oq=&aqs=chrome..69i57j35i39j0l4.2098j0j7&sourceid=chrome&ie=UTF-8";
+			System.out.println ("https://www.google.com/search?q=" + songName +"&oq=&aqs=chrome..69i57j35i39j0l4.2098j0j7&sourceid=chrome&ie=UTF-8");
 		}
+		music = true;
+		System.out.println("Would you like to add this to your playlist?");
 	}
 	/**
 	 * Search for one word in phrase. The search is not case
